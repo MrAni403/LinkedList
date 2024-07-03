@@ -1,0 +1,31 @@
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+       /* create one dummy value node*/
+       ListNode dummy=new ListNode();
+       /* create another dummy node and connect to first node for return purpose*/
+       ListNode dummy2=dummy;
+       /* intialize total and carry =0 */
+       int total=0;
+       int carry=0;
+       while(l1!=null||l2!=null||carry!=0){
+        total=carry;
+        /* add l1.val and l2.val */
+        if(l1!=null){
+            total+=l1.val;
+            l1=l1.next;
+        }
+        if(l2!=null){
+            total+=l2.val;
+            l2=l2.next;
+        }
+        /* using modulus method to convert remainder value into node and add quotient to carry */
+        int num=total%10;
+        carry=total/10;
+        ListNode temp=new ListNode(num);
+        dummy.next=temp;
+        dummy=temp;
+
+       }
+       return dummy2.next;
+    }
+}
